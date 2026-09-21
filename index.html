@@ -263,6 +263,11 @@ mark{background:linear-gradient(180deg,transparent 52%,rgba(122,184,224,.45) 52%
 }
 .lead-quote em{font-style:normal;color:var(--blue);}
 .para{color:var(--soft);font-size:15.5px;margin-bottom:13px;}
+.about-points{list-style:none;margin:6px 0 0;padding:0;display:flex;flex-direction:column;gap:12px;}
+.about-points li{position:relative;padding-left:22px;font-size:15.5px;color:var(--text);line-height:1.7;}
+.about-points li::before{content:"";position:absolute;left:4px;top:11px;width:7px;height:7px;border-radius:50%;background:var(--blue);}
+.about-points li b{color:var(--blue-deep);font-weight:700;}
+.about-points li span{color:var(--soft);}
 
 /* 生活碎片轮播 */
 .life-gallery{margin:30px 0 10px;}
@@ -804,8 +809,12 @@ footer .egg{display:inline-block;margin-top:8px;font-size:12px;color:var(--blue)
       <div class="lead-quote" data-page-node-id="GUtdzwJyLcFWD3RoBKmxfD">
         本科学<em data-page-node-id="L2ITtmjHeqZnv5GVcRCiT8">环境生态工程</em>，现在在 AI 公司做技术招聘。
       </div>
-      <p class="para" data-page-node-id="WvVGf3q7uA8YioNGcDOkwe">从美团、可灵到面壁智能，做 AI 技术方向招聘：视觉生成、多模态、具身智能、CodeAgent 后训练…… 具体故事留到面试慢慢讲。</p>
-      <p class="para" data-page-node-id="brRA6UX9lW1WCzIAXKHJfS">比起"把活干完"，我更想让它省力一点。所以搭了人才 Mapping、简历评分和招聘工作台，把踩过的坑变成下次能直接用的经验。</p>
+      <ul class="about-points" data-page-node-id="about_pts">
+        <li data-page-node-id="ap1"><b>27 届本科生</b><span> · 环境生态工程专业</span></li>
+        <li data-page-node-id="ap2"><b>三段实习经历</b><span> · 美团 → 可灵 → 面壁智能，AI 技术方向招聘</span></li>
+        <li data-page-node-id="ap3"><b>丰富的校园经历</b><span> · 两次支教，从队员到队长，负责授课与影像记录</span></li>
+        <li data-page-node-id="ap4"><b>AI 探索</b><span> · 搭人才 Mapping、简历评分、招聘工作台等小工具，让招聘更省力</span></li>
+      </ul>
 
       
 
