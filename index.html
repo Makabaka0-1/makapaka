@@ -299,6 +299,7 @@ mark{background:linear-gradient(180deg,transparent 52%,rgba(122,184,224,.45) 52%
 .sticky:nth-child(1){transform:rotate(-1.6deg);}
 .sticky:nth-child(2){transform:rotate(1deg);background:#fff;}
 .sticky:nth-child(3){transform:rotate(-.6deg);}
+.sticky:only-child{grid-column:1/-1;justify-self:center;max-width:320px;}
 .sticky:hover{transform:rotate(0) translateY(-6px) scale(1.02);box-shadow:var(--shadow-lg);z-index:2;}
 .sticky::before{
   content:"";position:absolute;top:-9px;left:50%;transform:translateX(-50%) rotate(-3deg);
@@ -437,20 +438,32 @@ img.logo{
   opacity:0;pointer-events:none;transition:.3s;cursor:zoom-out;
 }
 #lb.on{opacity:1;pointer-events:auto;}
-#lb img{
-  max-width:86vw;max-height:80vh;border-radius:16px;
-  box-shadow:0 34px 90px rgba(0,0,0,.45);
-  transform:scale(.9) rotate(-1.5deg);transition:.35s cubic-bezier(.34,1.4,.64,1);
+#lb .lb-viewport{
+  width:86vw;height:80vh;overflow:hidden;position:relative;border-radius:16px;
 }
-#lb.on img{transform:scale(1) rotate(0);}
-#lb .cap{
-  position:absolute;bottom:5vh;left:50%;transform:translateX(-50%);
-  color:#fff;font-size:14px;font-weight:600;letter-spacing:.5px;
-  background:rgba(255,255,255,.14);padding:8px 20px;border-radius:24px;white-space:nowrap;
+#lb .lb-track{
+  display:flex;height:100%;transition:transform .4s cubic-bezier(.34,1.4,.64,1);
+  cursor:grab;
+}
+#lb .lb-track:active{cursor:grabbing;}
+#lb .lb-track.no-anim{transition:none;}
+#lb .lb-slide{
+  flex:0 0 86vw;height:100%;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:0 2vw;box-sizing:border-box;
+}
+#lb .lb-slide img{
+  max-width:100%;max-height:calc(80vh - 80px);border-radius:16px;
+  box-shadow:0 34px 90px rgba(0,0,0,.45);
+  object-fit:contain;
+}
+#lb .lb-cap{
+  margin-top:12px;color:#fff;font-size:14px;font-weight:600;letter-spacing:.5px;
+  background:rgba(255,255,255,.14);padding:8px 20px;border-radius:24px;white-space:nowrap;max-width:80vw;overflow:hidden;text-overflow:ellipsis;
 }
 #lb .x{
   position:absolute;top:18px;right:28px;font-size:34px;color:#fff;
-  cursor:pointer;line-height:1;transition:.25s;
+  cursor:pointer;line-height:1;transition:.25s;z-index:5;
 }
 #lb .x:hover{transform:rotate(90deg) scale(1.15);}
 #lb .nav{
@@ -458,17 +471,16 @@ img.logo{
   width:48px;height:48px;border-radius:50%;border:none;cursor:pointer;
   background:rgba(255,255,255,.18);color:#fff;font-size:26px;line-height:1;
   display:flex;align-items:center;justify-content:center;transition:.26s;
-  backdrop-filter:blur(6px);font-family:inherit;
+  backdrop-filter:blur(6px);font-family:inherit;z-index:5;
 }
 #lb .nav:hover{background:#fff;color:var(--blue-deep);transform:translateY(-50%) scale(1.12);}
 #lb .nav.prev{left:3vw;}
 #lb .nav.next{right:3vw;}
-#lb .lbbar{position:absolute;bottom:5vh;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:12px;}
+#lb .lbbar{position:absolute;bottom:3.5vh;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:12px;z-index:5;}
 #lb .cnt{color:rgba(255,255,255,.82);font-size:12.5px;font-weight:700;}
-#lb .cap{position:static;transform:none;background:rgba(255,255,255,.16);padding:8px 20px;border-radius:24px;white-space:nowrap;}
 #lb .empty{display:none;flex-direction:column;align-items:center;gap:10px;color:#fff;text-align:center;}
 #lb.empty-mode .empty{display:flex;}
-#lb.empty-mode img,#lb.empty-mode .nav,#lb.empty-mode .cnt{display:none;}
+#lb.empty-mode .lb-viewport,#lb.empty-mode .nav,#lb.empty-mode .cnt{display:none;}
 #lb .empty img{width:92px;height:92px;object-fit:cover;object-position:center top;border-radius:50%;background:#f7f0e6;}
 #lb .empty b{font-size:17px;}
 #lb .empty span{font-size:13px;opacity:.82;}
@@ -709,7 +721,7 @@ footer .egg{display:inline-block;margin-top:8px;font-size:12px;color:var(--blue)
   </symbol>
 </svg>
 
-<div class="dots" data-page-node-id="UPKxYv6TVGceCC3TWctqK2" style="background-position: 8.55713px -4.9554px; margin: 0px; padding: 0px; box-sizing: border-box; position: fixed; inset: -40px; z-index: 0; pointer-events: none; background-image: radial-gradient(rgba(122, 184, 224, 0.24) 1.4px, transparent 1.4px); background-size: 24px 24px; transition: background-position 0.5s ease-out; mask-image: radial-gradient(78% 68% at 72% 22%, rgb(0, 0, 0) 28%, transparent 100%);"></div>
+<div class="dots" data-page-node-id="UPKxYv6TVGceCC3TWctqK2" style="background-position: 2.43812px 4.45714px; margin: 0px; padding: 0px; box-sizing: border-box; position: fixed; inset: -40px; z-index: 0; pointer-events: none; background-image: radial-gradient(rgba(122, 184, 224, 0.24) 1.4px, transparent 1.4px); background-size: 24px 24px; transition: background-position 0.5s ease-out; mask-image: radial-gradient(78% 68% at 72% 22%, rgb(0, 0, 0) 28%, transparent 100%);"></div>
 <div class="dots d2" data-page-node-id="4LU5eeB91h7450FNoHtmlD"></div>
 <div class="flower fl-a" data-page-node-id="4q5WLkgsv6Rbbho6oACSFt"><svg viewBox="0 0 40 40" fill="currentColor" data-page-node-id="me9ujEpx5yIqZhCFS6WvaF"><use href="#fl" data-page-node-id="gkqEnkmP0UNAR0gOsLVgOC"></use></svg></div>
 <div class="flower fl-b" data-page-node-id="CsTvVW5zWysNc9c1fACTjM"><svg viewBox="0 0 40 40" fill="currentColor" data-page-node-id="ny06yAiYGbtuuozE6lkIBD"><use href="#fl" data-page-node-id="HQtdxDIivatHy4bSbQaUNK"></use></svg></div>
@@ -734,9 +746,9 @@ footer .egg{display:inline-block;margin-top:8px;font-size:12px;color:var(--blue)
   </div>
 
   <nav class="menu" data-page-node-id="xueZ66iWrhfcsBCWGtU2aB">
-    <a href="#about" data-page-node-id="v6r07umo4ny633Tt65c1Ha" class=""><span class="n" data-page-node-id="PiHgOD9rV6meIeU3WiDYCE">01</span><span class="t" data-page-node-id="Ryxw9UgA1JWEBoirNCEoa0">个人介绍</span><span class="e" data-page-node-id="7uxVO9jzRLHATy7ThNfPxq">About</span></a>
-    <a href="#intern" data-page-node-id="fNGcyZkraMIBtAp9b6Kc3Q" class="active"><span class="n" data-page-node-id="F3scfdZEW0W3KJlPGj6DQ1">02</span><span class="t" data-page-node-id="nEpZfuEik1GarmWGH5cTTf">实习经历</span><span class="e" data-page-node-id="UviX4EOWAqLrtltPN7QcQW">Internship</span></a>
-    <a href="#project" data-page-node-id="8SZdCId4Awrdk0bGdPqszf"><span class="n" data-page-node-id="GRSyuOUACYXgOtiL8fIz2k">03</span><span class="t" data-page-node-id="YFHkG0mJRBGRZz0lRWTh9P">项目经历</span><span class="e" data-page-node-id="IQJDrkE9Mkwqdcn7i2Gcp6">Project</span></a>
+    <a href="#about" data-page-node-id="v6r07umo4ny633Tt65c1Ha" class="active"><span class="n" data-page-node-id="PiHgOD9rV6meIeU3WiDYCE">01</span><span class="t" data-page-node-id="Ryxw9UgA1JWEBoirNCEoa0">个人介绍</span><span class="e" data-page-node-id="7uxVO9jzRLHATy7ThNfPxq">About</span></a>
+    <a href="#intern" data-page-node-id="fNGcyZkraMIBtAp9b6Kc3Q" class=""><span class="n" data-page-node-id="F3scfdZEW0W3KJlPGj6DQ1">02</span><span class="t" data-page-node-id="nEpZfuEik1GarmWGH5cTTf">实习经历</span><span class="e" data-page-node-id="UviX4EOWAqLrtltPN7QcQW">Internship</span></a>
+    <a href="#project" data-page-node-id="8SZdCId4Awrdk0bGdPqszf" class=""><span class="n" data-page-node-id="GRSyuOUACYXgOtiL8fIz2k">03</span><span class="t" data-page-node-id="YFHkG0mJRBGRZz0lRWTh9P">项目经历</span><span class="e" data-page-node-id="IQJDrkE9Mkwqdcn7i2Gcp6">Project</span></a>
     <a href="#campus" data-page-node-id="HmNs0WHZni85YkhaHUTJnC"><span class="n" data-page-node-id="MFIARYQviyaueM3GdNLqAx">04</span><span class="t" data-page-node-id="fVKzQY0mNNW4FjEXkNHP35">校园经历</span><span class="e" data-page-node-id="pDY5onQIvZTb1HxhamZeuL">Campus</span></a>
     <a href="#hobby" data-page-node-id="MUuekyV24ZSfuDLiPpPfcu"><span class="n" data-page-node-id="bH34JnkHwqPGECxLBzeqlY">05</span><span class="t" data-page-node-id="E4bmsfPoLQb8Jwbyoxz4H4">兴趣爱好</span><span class="e" data-page-node-id="DrOyLbYRetkfaFKzXnvxSa">Hobbies</span></a>
   </nav>
@@ -756,7 +768,7 @@ footer .egg{display:inline-block;margin-top:8px;font-size:12px;color:var(--blue)
     <div class="sec-head reveal in" data-page-node-id="TzWNxNFGP4SLvHP6TX0A9Y">
       <div class="sec-num" data-page-node-id="VKlZCnYV9tEeUtwYxA7uDQ">01</div>
       <div class="eyebrow" data-page-node-id="1Ut3uVzuFC8ax96KTrlVgb">About Me</div>
-      <h2 data-page-node-id="bhnsQQBdTN99UXCsHnHEY3">个人<em data-page-node-id="9UO5tF1C1ZlDBg6wcIc7Ek">介绍</em><svg class="bud" width="19" height="19" viewBox="0 0 40 40" fill="#cfe6f7" data-page-node-id="DHXC3HTGuHcNOGt7RaWIgx"><use href="#fl" data-page-node-id="SWPfJGUCnwJGBXFjoFnMiU"></use></svg><div class="mk on" data-page-node-id="c896H6dCtweGDNl6ekVGDv"><img src="makabaka.png" alt="玛卡巴卡"><span class="mk-bub" data-page-node-id="u9PreZANHvMvKfb96CjVY4">阿卡哇卡！这就是我～</span></div></h2>
+      <h2 data-page-node-id="bhnsQQBdTN99UXCsHnHEY3">个人<em data-page-node-id="9UO5tF1C1ZlDBg6wcIc7Ek">介绍</em><svg class="bud" width="19" height="19" viewBox="0 0 40 40" fill="#cfe6f7" data-page-node-id="DHXC3HTGuHcNOGt7RaWIgx"><use href="#fl" data-page-node-id="SWPfJGUCnwJGBXFjoFnMiU"></use></svg><div class="mk on" data-page-node-id="c896H6dCtweGDNl6ekVGDv"><img src="makabaka.png" alt="玛卡巴卡" data-page-node-id="lRaQnZTIdaWzg1Tp7LtfqT"><span class="mk-bub" data-page-node-id="u9PreZANHvMvKfb96CjVY4">阿卡哇卡！这就是我～</span></div></h2>
       <p data-page-node-id="gDPFapJPagFZwJXbPTSYu3">一句话版本：一个把「招聘嗅觉」和「AI 工具」缝在一起的人。</p>
     </div>
 
@@ -780,32 +792,29 @@ footer .egg{display:inline-block;margin-top:8px;font-size:12px;color:var(--blue)
           <div class="a" data-page-node-id="Ep0lpa4eYERGnBBnCaC39F" style="cursor: text; white-space: pre-wrap;">面壁智能实习+积极求职中
 <br data-page-node-id="bGdu45f2txV5qqsiYFfDRp" style="margin:0;padding:0;box-sizing:border-box;-webkit-user-drag:none !important"></div>
         </div>
-        <div class="sticky" data-page-node-id="11VeCBwphHdeOq16IO2o5h">
-          <div class="q" data-page-node-id="mUZfhspfRLSybpBiXlmyWA">SUPERPOWER</div>
-          <div class="a" data-page-node-id="bUPH7GzhvELOiRRgtB5CkC">把重复劳动<br data-page-node-id="sHC0TlpcQzBHBL2chOC5Sx">变成可以复用的工具 ⚙️</div>
-        </div>
+        
       </div>
 
-      <div class="life-gallery reveal" data-page-node-id="life_gallery">
-        <div class="life-head">
-          <span>🎞️</span>
-          <div>
-            <div class="life-title">生活碎片</div>
-            <div class="life-sub">左右滑动，看看屏幕之外的我</div>
+      <div class="life-gallery reveal in" data-page-node-id="life_gallery">
+        <div class="life-head" data-page-node-id="brET1IMbPCVxaLsT1UokB9">
+          <span data-page-node-id="E8ze6hXY1xNT9CCUER23LB">🎞️</span>
+          <div data-page-node-id="S3rsHCOfV1pFBfPfZsLcrl">
+            <div class="life-title" data-page-node-id="Cwpuq7GJw6bgXU8EUcndTu">生活碎片</div>
+            <div class="life-sub" data-page-node-id="FvxBNvtHq4GgXC72SxL5VE">左右滑动，看看屏幕之外的我</div>
           </div>
         </div>
-        <div class="life-carousel">
-          <button class="life-arrow life-prev" aria-label="上一张">‹</button>
-          <div class="life-track" id="lifeTrack">
-            <div class="life-slide"><img src="life-1.jpg" alt="做手工"><p>周末做点小手工，把碎片时间变成可触摸的小东西。</p></div>
-            <div class="life-slide"><img src="life-2.jpg" alt="冬天出游"><p>冬天去山里，阳光和冷空气都刚刚好。</p></div>
-            <div class="life-slide"><img src="life-3.jpg" alt="专注工作"><p>某一个认真赶工的下午，屏幕外的世界也很安静。</p></div>
-            <div class="life-slide"><img src="life-4.jpg" alt="答辩现场"><p>站在讲台上答辩，紧张是真的，成长也是真的。</p></div>
-            <div class="life-slide"><img src="life-5.jpg" alt="志愿服务"><p>带新生的时候，突然觉得自己也长大了一点。</p></div>
-            <div class="life-slide"><img src="life-6.jpg" alt="相机自拍"><p>用相机记录世界，也记录自己。</p></div>
+        <div class="life-carousel" data-page-node-id="WHsSj3XEvIGir1Tbbt05Uo">
+          <button class="life-arrow life-prev" aria-label="上一张" data-page-node-id="bvywBRQ9aQUHx04S1MW95s">‹</button>
+          <div class="life-track" id="lifeTrack" data-page-node-id="HZmnUhQyTcLpLXDW63lo5G">
+            <div class="life-slide" data-page-node-id="3esZnrokxjlSmkkuKiifxG"><img src="life-1.jpg" alt="做手工" data-page-node-id="bPBBRwmailHE6KUHj1qtyB"><p data-page-node-id="Acf9q7SBMZ8UfUluPZwCXn" style="text-align: center;">做手帐📖</p></div>
+            <div class="life-slide" data-page-node-id="sbzAIyPnuX27P8LkPKeKzk"><img src="life-2.jpg" alt="冬天出游" data-page-node-id="3Q3jCLKFPiwicFFBP9k8DJ"><p data-page-node-id="AWkpwzW9BUdx1m3m7bwfSS" style="text-align: center;">旅游🏔️</p></div>
+            <div class="life-slide" data-page-node-id="vBYuvOz0xHS66ddN7uByVY"><img src="life-3.jpg" alt="专注工作" data-page-node-id="PmFBfCcpmXdZv9GfKb1viH"><p data-page-node-id="3SB1qStmX8IfhFrdnVi9a8" style="text-align: center;">会议📅</p></div>
+            <div class="life-slide" data-page-node-id="SKK2VtUZCSuvfpAtzgS3Ao"><img src="life-4.jpg" alt="答辩现场" data-page-node-id="7bdxWYMNgBz4qBvO981Agj"><p data-page-node-id="8kFTLDoqWcVkRAkuHTPyxh" style="text-align: center;">答辩🤵‍♀️</p></div>
+            <div class="life-slide" data-page-node-id="CtaLyBxL47Ta06fty1F6jH"><img src="life-5.jpg" alt="志愿服务" data-page-node-id="4bkMI3drjfMHV0fZ7y8ida"><p data-page-node-id="pdcvOmJ0oAt6EPjZmk2MmN" style="text-align: center;">志愿活动💪</p></div>
+            <div class="life-slide" data-page-node-id="OzY1tnDezEY0IijDW6zR0i"><img src="life-6.jpg" alt="相机自拍" data-page-node-id="AlRimc20lJUQmozhbqYWuD"><p data-page-node-id="AlBQqDlEVDkHVQFME5rOU2" style="text-align: center;">拍摄📷</p></div>
           </div>
-          <button class="life-arrow life-next" aria-label="下一张">›</button>
-          <div class="life-dots" id="lifeDots"></div>
+          <button class="life-arrow life-next" aria-label="下一张" data-page-node-id="kUxteuGTTNP5JkllvH3HU2">›</button>
+          <div class="life-dots" id="lifeDots" data-page-node-id="GyYX4QoReZJZrBipg4ctRA"><button aria-label="第1张"></button><button aria-label="第2张"></button><button aria-label="第3张"></button><button aria-label="第4张"></button><button aria-label="第5张" class="active"></button><button aria-label="第6张"></button></div>
         </div>
       </div>
 
@@ -838,7 +847,7 @@ footer .egg{display:inline-block;margin-top:8px;font-size:12px;color:var(--blue)
     <div class="sec-head reveal in" data-page-node-id="WbQTbtdyuOUInUvhMbnYpd">
       <div class="sec-num" data-page-node-id="BBmB4z93B3RXWEtrZV7AH5">02</div>
       <div class="eyebrow" data-page-node-id="cR8Q7DnuJ4eJx8lO2B9omZ">Internship</div>
-      <h2 data-page-node-id="sqfXVssTA8ZlhQyHQm1gJ8">实习<em data-page-node-id="cOYtPIT7NvCeKQskWBXFyC">经历</em><div class="mk on" data-page-node-id="rZV3ZZcVCeGrEOKwg4ACF9"><img src="makabaka.png" alt="玛卡巴卡"><span class="mk-bub" data-page-node-id="Zcc0JMN2OsA3qSP4FGafMA">米卡玛卡！这些我都干过</span></div></h2>
+      <h2 data-page-node-id="sqfXVssTA8ZlhQyHQm1gJ8">实习<em data-page-node-id="cOYtPIT7NvCeKQskWBXFyC">经历</em><div class="mk on" data-page-node-id="rZV3ZZcVCeGrEOKwg4ACF9"><img src="makabaka.png" alt="玛卡巴卡" data-page-node-id="dwO4wmwzWmBNEfvz7NKXS6"><span class="mk-bub" data-page-node-id="Zcc0JMN2OsA3qSP4FGafMA">米卡玛卡！这些我都干过</span></div></h2>
       <p data-page-node-id="YaKYBFmUSY51HtM1vzNfoB">三段都在 AI 技术团队，做的是同一件事的上下游：找到人，和把找人的方法沉淀下来。</p>
     </div>
 
@@ -913,7 +922,7 @@ footer .egg{display:inline-block;margin-top:8px;font-size:12px;color:var(--blue)
     <div class="sec-head reveal in" data-page-node-id="zWAQJYG10V8pW9UR03FLSE">
       <div class="sec-num" data-page-node-id="JAbzPMImEvA6c15KWxz6Aq">03</div>
       <div class="eyebrow" data-page-node-id="nLOvhBsbRfHgYCFhZUbnGt">Project</div>
-      <h2 data-page-node-id="hpKb1YHrlDXHE3GndL7Zj4">项目<em data-page-node-id="dEsnYboCBlZnNEFYLhzde2">经历</em><div class="mk on" data-page-node-id="uFUQjAHrzwoGFMuydeQS35"><img src="makabaka.png" alt="玛卡巴卡"><span class="mk-bub" data-page-node-id="nIc0sXMl8IixnBJD1zakd2">呣！这个是我自己搭的</span></div></h2>
+      <h2 data-page-node-id="hpKb1YHrlDXHE3GndL7Zj4">项目<em data-page-node-id="dEsnYboCBlZnNEFYLhzde2">经历</em><div class="mk on" data-page-node-id="uFUQjAHrzwoGFMuydeQS35"><img src="makabaka.png" alt="玛卡巴卡" data-page-node-id="dfvynwt8QOGpMo2X2Y7xMI"><span class="mk-bub" data-page-node-id="nIc0sXMl8IixnBJD1zakd2">呣！这个是我自己搭的</span></div></h2>
       <p data-page-node-id="bI2lKNkT5EYNVzPl3CNuAn">实习期间信息散落在多个平台，人才数据和复盘都留不下来 —— 于是我自己搭了个底座。</p>
     </div>
 
@@ -936,7 +945,7 @@ footer .egg{display:inline-block;margin-top:8px;font-size:12px;color:var(--blue)
     <div class="sec-head reveal in" data-page-node-id="wBdi0z2Ncv0XVcrgdoSOGZ">
       <div class="sec-num" data-page-node-id="AFT4Ev2rtSflqpqUvbQLUW">04</div>
       <div class="eyebrow" data-page-node-id="X7NH6N0ig2mOiUEUPFWL2Y">Campus</div>
-      <h2 data-page-node-id="1DrlA0SeUN3i6iX7acggbl">校园<em data-page-node-id="QuMGYdjb27R94zaOpVg6k8">经历</em><div class="mk on" data-page-node-id="liJOHhR5rUBRKzMuv1fBVa"><img src="makabaka.png" alt="玛卡巴卡"><span class="mk-bub" data-page-node-id="N8ZBBBrCpSAXEEkSTrh9GV">阿卡！这些是支教的照片</span></div></h2>
+      <h2 data-page-node-id="1DrlA0SeUN3i6iX7acggbl">校园<em data-page-node-id="QuMGYdjb27R94zaOpVg6k8">经历</em><div class="mk on" data-page-node-id="liJOHhR5rUBRKzMuv1fBVa"><img src="makabaka.png" alt="玛卡巴卡" data-page-node-id="ZtOaOEfPo2JubiCjUxbNyo"><span class="mk-bub" data-page-node-id="N8ZBBBrCpSAXEEkSTrh9GV">阿卡！这些是支教的照片</span></div></h2>
       <p data-page-node-id="yjx6IYo3I920iHO6XjOldx">两次支教，从队员到队长 —— 认真教书，也用镜头记下孩子们的笑脸。</p>
     </div><div data-page-node-id="Noy4vu596CrZkcU5TcG3Bn" class="card reveal in" style="margin:0;padding:24px 20px;box-sizing:border-box;-webkit-user-drag:none !important;background:#ffffff;border:1px solid rgba(122,184,224,.22);border-radius:20px;box-shadow:0 8px 30px rgba(61,132,180,.07);transition:opacity .8s cubic-bezier(.22,1,.36,1),transform .8s cubic-bezier(.22,1,.36,1);position:relative;overflow:hidden;opacity:1;transform:none">
         <div data-page-node-id="aLIZUTwPm4DwoDrBZfbDYQ" class="co" style="margin:0;padding:0;box-sizing:border-box;-webkit-user-drag:none !important;display:flex;align-items:flex-start;gap:14px;flex-wrap:wrap">
@@ -973,7 +982,7 @@ footer .egg{display:inline-block;margin-top:8px;font-size:12px;color:var(--blue)
     <div class="sec-head reveal in" data-page-node-id="pZe0unWYmVjS8LakqzVEdn">
       <div class="sec-num" data-page-node-id="ANiHtAV59KOIXiCW4RzBUO">05</div>
       <div class="eyebrow" data-page-node-id="0vBKPynedFpdf4GwDkYM7h">Hobbies</div>
-      <h2 data-page-node-id="GMq9HpMYdMpTHiuMEpZ8Vd">兴趣<em data-page-node-id="uh0qUxKODNVut6pipjF9Tu">爱好</em><div class="mk on" data-page-node-id="UKmCGhAHURGIEHwGzTDJxK"><img src="makabaka.png" alt="玛卡巴卡"><span class="mk-bub" data-page-node-id="XQa7yZ6m9pDzhe0amVnskS">米卡～这些都是我的快乐源泉</span></div></h2>
+      <h2 data-page-node-id="GMq9HpMYdMpTHiuMEpZ8Vd">兴趣<em data-page-node-id="uh0qUxKODNVut6pipjF9Tu">爱好</em><div class="mk on" data-page-node-id="UKmCGhAHURGIEHwGzTDJxK"><img src="makabaka.png" alt="玛卡巴卡" data-page-node-id="qMYvwH5rrnSzDkvfYttGA3"><span class="mk-bub" data-page-node-id="XQa7yZ6m9pDzhe0amVnskS">米卡～这些都是我的快乐源泉</span></div></h2>
       <p data-page-node-id="uPCnpGGGJa3RwumJUHfK1E">摄影、手帐、旅行、看书 —— 输入之外，我给自己的四格充电口。</p>
     </div>
     <div class="card reveal in" data-page-node-id="sqsl3hWOERrvCl0CR2SWvC">
@@ -1008,7 +1017,7 @@ footer .egg{display:inline-block;margin-top:8px;font-size:12px;color:var(--blue)
   zhaosuting2004@163.com · (+86) 18725323094（同微信）<br data-page-node-id="2KvVv3P80sceovurpvaoWM">
   © 2027 届 · 赵素婷 · 大连理工大学 · 本科应届
   <div class="egg" data-page-node-id="yxLl7NFS4TY0rNlYdsh9BR">🌷 秘密：点击页面任意处，会冒出一朵小花</div>
-  <div class="egg-mk" data-page-node-id="RqhLqmzb7qKGBprEiRjQfC"><i data-page-node-id="bm6yoA3eUFWFvNo7vZYQOn"><img src="makabaka.png" alt="玛卡巴卡"></i>玛卡巴卡，阿卡哇卡，米卡玛卡呣！</div>
+  <div class="egg-mk" data-page-node-id="RqhLqmzb7qKGBprEiRjQfC"><i data-page-node-id="bm6yoA3eUFWFvNo7vZYQOn"><img src="makabaka.png" alt="玛卡巴卡" data-page-node-id="9qtfv2FHbeG0RH0jHsUkOJ"></i>玛卡巴卡，阿卡哇卡，米卡玛卡呣！</div>
 </footer>
 
 <div id="toast" data-page-node-id="OFjiRy5MJbXaEsEFgBOSdh">✓ 已复制到剪贴板</div>
@@ -1101,24 +1110,36 @@ const albums = {
 
 const lb = document.createElement('div');
 lb.id = 'lb';
-lb.innerHTML = '<span class="x">&times;</span><button class="nav prev">&#8249;</button><img alt=""><button class="nav next">&#8250;</button>'
-  + '<div class="lbbar"><span class="cap"></span><span class="cnt"></span></div>'
-  + '<div class="empty"><img src="makabaka.png" alt="玛卡巴卡"><b>照片还在整理中</b><span>过几天就把它们放进来～</span></div>';
+lb.innerHTML = '<span class="x"><!--pnid:TfSbemd1mnpnZC3LydKYLz-->&times;</span><button class="nav prev"><!--pnid:X072MMetCva6kYvGSslaeL-->&#8249;</button><button class="nav next"><!--pnid:fdIKdAFSTLl08pGLsVgJ3l-->&#8250;</button><!--pnid:EGRl9iFYCjhTmeJLn96bca-->'
+  + '<div class="lb-viewport"><div class="lb-track" id="lbTrack"></div></div><!--pnid:pnid_lb_viewport-->'
+  + '<div class="lbbar"><span class="cnt"></span></div><!--pnid:UX9kQMDQXETgw5GKL0IvQo-->'
+  + '<div class="empty"><img src="makabaka.png" alt="玛卡巴卡"><b><!--pnid:xUWHG2m8dFqNtgXwwwEEIH-->照片还在整理中</b><span><!--pnid:HSbb7mOzaD5bX8BUMlZnKt-->过几天就把它们放进来～</span></div><!--pnid:G3HAurMwE6LxUj0y78qH9T-->';
 document.body.appendChild(lb);
-const lbImg = lb.querySelector('img'), lbCap = lb.querySelector('.cap'), lbCnt = lb.querySelector('.cnt');
+const lbTrack = lb.querySelector('#lbTrack'), lbCnt = lb.querySelector('.cnt');
 
-let cur = [], idx = 0;
+let cur = [], idx = 0, slideW = 0;
+function renderLb() {
+  if (!cur.length) { lb.classList.add('on','empty-mode'); return; }
+  slideW = lb.querySelector('.lb-viewport').clientWidth;
+  lbTrack.innerHTML = cur.map(([src, cap]) => '<div class="lb-slide"><img src="' + src + '" alt="" draggable="false"><div class="lb-cap">' + (cap || '') + '</div></div>').join('');
+  goTo(idx, false);
+  lbCnt.textContent = (idx + 1) + ' / ' + cur.length;
+}
+function goTo(i, animate = true) {
+  idx = Math.max(0, Math.min(i, cur.length - 1));
+  if (animate) lbTrack.classList.remove('no-anim'); else lbTrack.classList.add('no-anim');
+  lbTrack.style.transform = 'translateX(' + (-idx * slideW) + 'px)';
+  lbCnt.textContent = (idx + 1) + ' / ' + cur.length;
+}
 function openLb(list, i) {
   cur = list; idx = i;
-  if (!cur.length) { lb.classList.add('on','empty-mode'); return; }
   lb.classList.remove('empty-mode');
-  lbImg.src = cur[idx][0];
-  lbCap.textContent = cur[idx][1] || '';
-  lbCnt.textContent = (idx + 1) + ' / ' + cur.length;
+  renderLb();
   lb.classList.add('on');
 }
-function step(d) { if (cur.length < 2) return; idx = (idx + d + cur.length) % cur.length; openLb(cur, idx); }
+function step(d) { if (cur.length < 2) return; goTo((idx + d + cur.length) % cur.length); }
 
+/*  campus 拍立得点击仍走灯箱  */
 document.querySelectorAll('#campus .gal').forEach((g, i) => {
   g.addEventListener('click', e => { e.stopPropagation(); openLb(albums.campus.items, i); });
 });
@@ -1136,6 +1157,33 @@ document.addEventListener('keydown', e => {
   if (e.key === 'ArrowRight') step(1);
 });
 
+/* 移动端拖拽滑动 + 桌面鼠标拖拽  */
+let startX = 0, currentX = 0, dragging = false;
+lbTrack.addEventListener('pointerdown', e => {
+  if (cur.length < 2) return;
+  dragging = true; startX = e.clientX; currentX = e.clientX;
+  lbTrack.setPointerCapture(e.pointerId);
+  lbTrack.classList.add('no-anim');
+});
+lbTrack.addEventListener('pointermove', e => {
+  if (!dragging) return;
+  currentX = e.clientX;
+  const delta = currentX - startX;
+  const base = -idx * slideW;
+  lbTrack.style.transform = 'translateX(' + (base + delta) + 'px)';
+});
+function endDrag() {
+  if (!dragging) return;
+  dragging = false;
+  const delta = currentX - startX;
+  if (delta < -50) step(1);
+  else if (delta > 50) step(-1);
+  else goTo(idx);
+}
+lbTrack.addEventListener('pointerup', endDrag);
+lbTrack.addEventListener('pointercancel', endDrag);
+window.addEventListener('resize', () => { if (lb.classList.contains('on')) { slideW = lb.querySelector('.lb-viewport').clientWidth; goTo(idx, false); } });
+
 /* ===== 看书 · 金句浮层 ===== */
 const bookQuotes = [
   ['给浮嚣以宁静，给躁急以清冽，给高蹈以平实，给粗犷以明丽。', '《沙原隐泉》'],
@@ -1146,12 +1194,12 @@ const bookQuotes = [
 const qmask = document.createElement('div');
 qmask.id = 'qmask';
 qmask.innerHTML =
-  '<span class="qx">&times;</span>' +
-  '<div class="qpanel">' +
-    '<div class="qhead"><div class="mk"><img src="makabaka.png" alt="玛卡巴卡"></div>' +
-    '<div><b>《文化苦旅》· 摘抄</b><br><span>YU QIUYU · 最喜欢的四句</span></div></div>' +
-    bookQuotes.map(q => '<div class="qcard"><div class="qt">' + q[0] + '</div><div class="qa">—— 余秋雨 <b>' + q[1] + '</b></div></div>').join('') +
-    '<div class="qfeel"><div class="qft"><span class="pin">✍️</span>我的感想</div>' +
+  '<span class="qx"><!--pnid:ntwLCw6hP4aXB7Hhbrv3VQ-->&times;</span><!--pnid:SwnXJGpDRBXPfpwJXzBKb6-->' +
+  '<div class="qpanel"><!--pnid:PvyjfhO70CRQoEOYEZgDlI-->' +
+    '<div class="qhead"><div class="mk"><img src="makabaka.png" alt="玛卡巴卡"></div><!--pnid:jkn9m746EHrizQv3oMfRI3-->' +
+    '<div><b><!--pnid:1Lyre5OwbLXlwdD74KdjWZ-->《文化苦旅》· 摘抄</b><br><span><!--pnid:P7pHXxXo4iTGHNxHzFJ1nD-->YU QIUYU · 最喜欢的四句</span></div></div><!--pnid:QYj8CS1CAWLcbZIkClWOuH-->' +
+    bookQuotes.map(q => '<div class="qcard"><div class="qt"><!--pnid:ITjLac4cE58oDhs2BzCS4u-->' + q[0] + '</div><div class="qa"><!--pnid:CjvW3wOAGxGiXk5hs4jenL-->—— 余秋雨 <b><!--pnid:kQj6uou847gasDcbSiAMg8-->' + q[1] + '</b></div></div><!--pnid:4qi4JfsT8dDbsVaDmflbu1-->').join('') +
+    '<div class="qfeel"><div class="qft"><span class="pin"><!--pnid:1f58imQPVbt0Ez67MhCU8j-->✍️</span><!--pnid:VAR0AWRUkDQOY2l9uWfK7U-->我的感想</div><!--pnid:BkwcSPX7AAaJUbeLDHVhQZ-->' +
       '<p>读《文化苦旅》，像跟着余秋雨把中国的山水与废墟重新走了一遍——每到一个地方，都不是在"看景"，而是在"读史"。那些被风沙掩埋的文明、被时间冲刷的古城，原来都还在土地里<span class="hl">安静地活着</span>。</p>' +
       '<p>最打动我的是那句"路，就是书"。旅行和读书本是一回事：都是离开熟悉的地方，去更远处<span class="hl">认识世界，也认识自己</span>。</p>' +
       '<p>合上书常会想——招聘也好、读书也罢，本质都是在和"人"打交道。理解一个人的来路，比急着下结论更重要；这份"慢一点"的耐心，大概就是它教我的事。</p>' +
@@ -1251,7 +1299,7 @@ document.querySelectorAll('[data-copy]').forEach(btn => {
   },{passive:true});
   updateDots();
 })();
-</script><div id="lb"><span class="x">×</span><button class="nav prev">‹</button><img alt=""><button class="nav next">›</button><div class="lbbar"><span class="cap"></span><span class="cnt"></span></div><div class="empty"><img src="makabaka.png" alt="玛卡巴卡"><b>照片还在整理中</b><span>过几天就把它们放进来～</span></div></div><div id="qmask"><span class="qx">×</span><div class="qpanel"><div class="qhead"><div class="mk"><img src="makabaka.png" alt="玛卡巴卡"></div><div><b>《文化苦旅》· 摘抄</b><br><span>YU QIUYU · 最喜欢的四句</span></div></div><div class="qcard"><div class="qt">给浮嚣以宁静，给躁急以清冽，给高蹈以平实，给粗犷以明丽。</div><div class="qa">—— 余秋雨 <b>《沙原隐泉》</b></div></div><div class="qcard"><div class="qt">没有悲剧就没有悲壮，没有悲壮就没有崇高。</div><div class="qa">—— 余秋雨 <b>《废墟》</b></div></div><div class="qcard"><div class="qt">堂皇转眼凋零，喧腾是短命的别名。</div><div class="qa">—— 余秋雨 <b>《夜雨诗意》</b></div></div><div class="qcard"><div class="qt">“读万卷书，行万里路，两者关系如何？”“没有两者。路，就是书。”</div><div class="qa">—— 余秋雨 <b>《文化苦旅》</b></div></div><div class="qfeel"><div class="qft"><span class="pin">✍️</span>我的感想</div><p>读《文化苦旅》，像跟着余秋雨把中国的山水与废墟重新走了一遍——每到一个地方，都不是在"看景"，而是在"读史"。那些被风沙掩埋的文明、被时间冲刷的古城，原来都还在土地里<span class="hl">安静地活着</span>。</p><p>最打动我的是那句"路，就是书"。旅行和读书本是一回事：都是离开熟悉的地方，去更远处<span class="hl">认识世界，也认识自己</span>。</p><p>合上书常会想——招聘也好、读书也罢，本质都是在和"人"打交道。理解一个人的来路，比急着下结论更重要；这份"慢一点"的耐心，大概就是它教我的事。</p></div><div class="qfoot">🌿 玛卡巴卡说：读书，也是种很棒的旅行</div></div></div>
+</script><div id="lb"><span class="x">×</span><button class="nav prev">‹</button><img alt=""><button class="nav next">›</button><div class="lbbar"><span class="cap"></span><span class="cnt"></span></div><div class="empty"><img src="makabaka.png" alt="玛卡巴卡"><b>照片还在整理中</b><span>过几天就把它们放进来～</span></div></div><div id="qmask"><span class="qx">×</span><div class="qpanel"><div class="qhead"><div class="mk"><img src="makabaka.png" alt="玛卡巴卡"></div><div><b>《文化苦旅》· 摘抄</b><br><span>YU QIUYU · 最喜欢的四句</span></div></div><div class="qcard"><div class="qt">给浮嚣以宁静，给躁急以清冽，给高蹈以平实，给粗犷以明丽。</div><div class="qa">—— 余秋雨 <b>《沙原隐泉》</b></div></div><div class="qcard"><div class="qt">没有悲剧就没有悲壮，没有悲壮就没有崇高。</div><div class="qa">—— 余秋雨 <b>《废墟》</b></div></div><div class="qcard"><div class="qt">堂皇转眼凋零，喧腾是短命的别名。</div><div class="qa">—— 余秋雨 <b>《夜雨诗意》</b></div></div><div class="qcard"><div class="qt">“读万卷书，行万里路，两者关系如何？”“没有两者。路，就是书。”</div><div class="qa">—— 余秋雨 <b>《文化苦旅》</b></div></div><div class="qfeel"><div class="qft"><span class="pin">✍️</span>我的感想</div><p>读《文化苦旅》，像跟着余秋雨把中国的山水与废墟重新走了一遍——每到一个地方，都不是在"看景"，而是在"读史"。那些被风沙掩埋的文明、被时间冲刷的古城，原来都还在土地里<span class="hl">安静地活着</span>。</p><p>最打动我的是那句"路，就是书"。旅行和读书本是一回事：都是离开熟悉的地方，去更远处<span class="hl">认识世界，也认识自己</span>。</p><p>合上书常会想——招聘也好、读书也罢，本质都是在和"人"打交道。理解一个人的来路，比急着下结论更重要；这份"慢一点"的耐心，大概就是它教我的事。</p></div><div class="qfoot">🌿 玛卡巴卡说：读书，也是种很棒的旅行</div></div></div><div id="lb" data-page-node-id="x6XqdTJScAvzPzlS3Ho5gI"><span class="x" data-page-node-id="RBWy1nONVmGE7qKwK1AJBX">×</span><button class="nav prev" data-page-node-id="ry14ZVodUq9Tm1iNLKiFmD">‹</button><img alt="" data-page-node-id="5FHymXz1gKa1HK94G8CaED"><button class="nav next" data-page-node-id="sbjaBBGMMQKZWaEgNMy3cg">›</button><div class="lbbar" data-page-node-id="t5jSPvX85dyILKzCfG2iHr"><span class="cap" data-page-node-id="zTsVqDN4LLFr9JbRneYryn"></span><span class="cnt" data-page-node-id="Ie2o4s6yntSEOPCATSVyPv"></span></div><div class="empty" data-page-node-id="2Y9EJ48f9KeWNBm4CViWYK"><img src="makabaka.png" alt="玛卡巴卡" data-page-node-id="0wEa7JNlOZv4D5HdGNCD0j"><b data-page-node-id="DoJHqkDloUHdo8DRHf9Vvy">照片还在整理中</b><span data-page-node-id="4bxGCgGneZLJwJySTnnn64">过几天就把它们放进来～</span></div></div><div id="qmask" data-page-node-id="NOmqrkDQE0Ls6uVOLC9RFe"><span class="qx" data-page-node-id="fcBFY5vZ0T5huJgMjG6XiY">×</span><div class="qpanel" data-page-node-id="8DQ0z5zBuSfZzcrkGbWeQz"><div class="qhead" data-page-node-id="TIgfTVTECTl3GQyx16Txfo"><div class="mk" data-page-node-id="nLppu2tMlh2EgQCojz25jw"><img src="makabaka.png" alt="玛卡巴卡" data-page-node-id="BpQhJGiG15MhTZ85qaARfC"></div><div data-page-node-id="BdrViogTAlOb8Wk3FOiuDA"><b data-page-node-id="GlaD8ZgjKqxiH2BKAQP4pH">《文化苦旅》· 摘抄</b><br data-page-node-id="eleTy1RF7B3KspqKO6fM5U"><span data-page-node-id="kjti4kHjSHN0dbtfPY9tfU">YU QIUYU · 最喜欢的四句</span></div></div><div class="qcard" data-page-node-id="PuEHWIdH0SvDR9IGsGyVlY"><div class="qt" data-page-node-id="0B7tAiAE7Ig0JlCuBN7HeZ">给浮嚣以宁静，给躁急以清冽，给高蹈以平实，给粗犷以明丽。</div><div class="qa" data-page-node-id="Bc0nRG6juSmaYEgIfQq950">—— 余秋雨 <b data-page-node-id="SSTNwiGBMYCmAaZEaKkFBE">《沙原隐泉》</b></div></div><div class="qcard" data-page-node-id="adePfhoW5sfAToG1D6Onko"><div class="qt" data-page-node-id="L3V7hLTocd5E8TuMHRpuF9">没有悲剧就没有悲壮，没有悲壮就没有崇高。</div><div class="qa" data-page-node-id="sfaioDB77lMXdPs5n0aMMx">—— 余秋雨 <b data-page-node-id="d3clYT1e2TqXA7hygKS6Fc">《废墟》</b></div></div><div class="qcard" data-page-node-id="z4VUvFelE9DNPnWzt80Cvk"><div class="qt" data-page-node-id="py66KpH6F6LzUGZkpdi8Id">堂皇转眼凋零，喧腾是短命的别名。</div><div class="qa" data-page-node-id="qe06PImvzpu90TUMuT3cEx">—— 余秋雨 <b data-page-node-id="HUywnMmLuXRNkgiMRmiwR0">《夜雨诗意》</b></div></div><div class="qcard" data-page-node-id="iJFucGRxBItiKZX4azmG83"><div class="qt" data-page-node-id="Aa5W0SOjvFrrwVH4OxW9Fq">“读万卷书，行万里路，两者关系如何？”“没有两者。路，就是书。”</div><div class="qa" data-page-node-id="8VvqTmuejE5Ie0VNHSK4d5">—— 余秋雨 <b data-page-node-id="4gvTmqRDwI0KAF7X07ZGsV">《文化苦旅》</b></div></div><div class="qfeel" data-page-node-id="4Y6SDLRvRW41QNXSAOyLjz"><div class="qft" data-page-node-id="LVjk1sMWPV0lJMiqoA1Hs6"><span class="pin" data-page-node-id="TcOVvKav19iesdutvKWttC">✍️</span>我的感想</div><p data-page-node-id="6RnoERfim9SExj5ig2Ngid">读《文化苦旅》，像跟着余秋雨把中国的山水与废墟重新走了一遍——每到一个地方，都不是在"看景"，而是在"读史"。那些被风沙掩埋的文明、被时间冲刷的古城，原来都还在土地里<span class="hl" data-page-node-id="RkrPKYDkV8Cit4sbvqwKCF">安静地活着</span>。</p><p data-page-node-id="1rEaeeVSNW9PqunHKzbMTe">最打动我的是那句"路，就是书"。旅行和读书本是一回事：都是离开熟悉的地方，去更远处<span class="hl" data-page-node-id="QFYgn0FAHJZSndS5smMQ1u">认识世界，也认识自己</span>。</p><p data-page-node-id="PkxpYcChJ9R4e9n03742SW">合上书常会想——招聘也好、读书也罢，本质都是在和"人"打交道。理解一个人的来路，比急着下结论更重要；这份"慢一点"的耐心，大概就是它教我的事。</p></div><div class="qfoot" data-page-node-id="2VG7JIMPwtCwRBv68k8Gt2">🌿 玛卡巴卡说：读书，也是种很棒的旅行</div></div></div>
 
 
 
